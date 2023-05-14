@@ -94,6 +94,7 @@ const getChedule = async () => {
     })
         .then((response) => response.json())
         .then((data) => {
+            console.log(data)
             const days = Object.keys(data);
             days.forEach(day => {
                 mvp.value.push(data[day]);
@@ -101,6 +102,7 @@ const getChedule = async () => {
             console.log(data)
         })
         .catch((error) => {
+            console.log(mvp.value);
             throw new Error(error.message)
         });
 }
