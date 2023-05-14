@@ -89,6 +89,7 @@ const getChedule = async () => {
     fetch(store.state.URL + 'api/v1/schedule/', {
         headers: {
             Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
         },
     })
         .then((response) => response.json())
