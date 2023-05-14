@@ -96,12 +96,9 @@ watch(() => router.currentRoute, () => {
 
 const getChedule = async () => {
     const token = localStorage.getItem("access");
-    const url = store.state.URL + 'api/v1/schedule/'
-    const bearer = `Bearer ${token}`
-    console.log(bearer)
-    fetch(url, {
+    fetch(store.state.URL + 'api/v1/schedule/', {
         headers: {
-            Authorization: `Bearer ${localToken}`,
+            Authorization: `Bearer ${token}`,
         },
     })
         .then((response) => response.json())
@@ -110,8 +107,10 @@ const getChedule = async () => {
             days.forEach(day => {
                 mvp.value.push(data[day]);
             });
+            console.log(data)
         })
         .catch((error) => {
+            console.error(error);
             throw new Error(error.message)
         });
 }

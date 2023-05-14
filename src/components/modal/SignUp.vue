@@ -4,7 +4,7 @@
         <div class="signup sign">
             <Close class="sign-close" @click="store.state.signupModel = !store.state.signupModel" />
             <div class="signup-content">
-                <form @submit.prevent="login({userName, password})" class="signup-info">
+                <form @submit.prevent="login({ userName, password })" class="signup-info">
                     <div class="signup-head">
                         <img src="../../assets/icons/modal/Logo.svg" alt="logo">
                         <img src="../../assets/icons/modal/Close.svg"
@@ -46,7 +46,7 @@
                         </label>
                     </div>
                     <span class="signup-forgot">Забыли пароль?</span>
-                    <button @click="$router.push('/schedule')" class="signup-btn">Войти</button>
+                    <button class="signup-btn">Войти</button>
                     <p class="signup-description">У вас нет аккаунта? <span>Регестрация</span></p>
                 </form>
                 <img :src="imageSignup" class="signup-img" alt="imageSignup">
@@ -60,14 +60,17 @@ import Close from '../../assets/icons/modal/Close.vue';
 import imageSignup from "../../assets/image/model/imageSignup.png"
 import { ref } from "vue"
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 const isActive = ref(false)
 const store = useStore()
 const userName = ref("")
 const password = ref("")
+const router = useRouter()
 
 
-const login = (item) => {
-    store.dispatch("getPost", item )
+const login = async (item) => {
+    await store.dispatch("getPost", item)
+    if (store.state.success) router.push('/schedule')
 }
 
 
@@ -261,4 +264,5 @@ const login = (item) => {
             display: flex;
         }
     }
-}</style>
+}
+</style>

@@ -7,6 +7,7 @@ export default createStore({
         URL: "https://cotedu.pythonanywhere.com/",
         data: null,
         schedule: [],
+        success: false,
     },
     getters: {},
     mutations: {
@@ -21,7 +22,6 @@ export default createStore({
         //     // const response = await data.json();
         //     // console.log(data);
         //     // console.log(response);
-
         //     await fetch(store.URL + "api/v1/auth/", {
         //         method: "POST",
         //         headers: {
@@ -55,18 +55,19 @@ export default createStore({
                     }),
                 });
 
-                const data = await response.json(); 
-                localStorage.setItem("access", data.access);
+                const data = await response.json();
+                if (data.access) {
+                    state.success = true;
+                    localStorage.setItem("access", data.access);
+                }
             } catch (error) {
                 console.log("Произошла ошибка:", error);
                 // Обработка ошибки при выполнении запроса
             }
         },
 
-       
         // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e…I6Mn0.6RtrTfPXQ-P6lkNrMiBrTMFsgVM0lrtSkLkVs-GjOM8'
         // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzOTg2MTc5LCJpYXQiOjE2ODM5NzUzNzksImp0aSI6IjQwY2I4ZWQ1NWM2MzQwYzM5ZDY3ZmEzZWRhZWY1MjkwIiwidXNlcl9pZCI6Mn0.2m1BNtdWt7ZiKxa-fCXqmVLFY-yZ2u5acGYwWKyOld8"
-        
     },
     modules: {},
 });
