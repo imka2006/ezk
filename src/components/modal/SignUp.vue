@@ -46,7 +46,7 @@
                         </label>
                     </div>
                     <span class="signup-forgot">Забыли пароль?</span>
-                    <button class="signup-btn">Войти</button>
+                    <button @click="$router.push('/schedule')" class="signup-btn">Войти</button>
                     <p class="signup-description">У вас нет аккаунта? <span>Регестрация</span></p>
                 </form>
                 <img :src="imageSignup" class="signup-img" alt="imageSignup">
