@@ -5,7 +5,7 @@
                 <div class="header-info">
                     <router-link to="/">
                         <Logo class="header-logo" />
-                        <img :src="LogoAnother" class="header-logo_another" alt="icon">
+                        <LogoAnother class="header-logo_another" />
                     </router-link>
                     <div class="header-languages">
                         <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,7 @@
 <script setup>
 import { ref } from 'vue';
 import Logo from '../../assets/icons/global/Logo.vue';
-import LogoAnother from '../../assets/icons/global/LogoAnother.svg';
+import LogoAnother from '../../assets/icons/global/LogoAnother.vue';
 import SignUp from '../../components/modal/SignUp.vue';
 import SignIn from '../../components/modal/SignIn.vue';
 import Burger from './Burger.vue'
