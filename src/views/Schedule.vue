@@ -85,14 +85,13 @@ const mvp = ref([])
 
 const getChedule = async () => {
     const token = localStorage.getItem("access");
-    console.log(token, 'token')
+    
     const url = store.state.URL + 'api/v1/schedule/'
     const bearer = `Bearer ${token}`
     console.log(bearer)
     fetch(url, {
         headers: {
             Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
         },
     })
         .then((response) => response.json())
