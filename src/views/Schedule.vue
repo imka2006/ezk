@@ -50,8 +50,9 @@
 import BigAdvertising from '../components/advertising/BigAdvertising.vue';
 import Sidebar from '../layout/Sidebar.vue';
 import Calendar from '../layout/Calendar.vue';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useStore } from 'vuex';
+import { useRoute, useRouter } from 'vue-router';
 const times = ref([
     {
         id: 0,
@@ -82,16 +83,25 @@ const times = ref([
 const days = ref(["неделя", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",])
 const store = useStore();
 const mvp = ref([])
+const router = useRouter()
+
+
+const token = localStorage.getItem("access");
+
+const localToken = ref('');
+
+watch(() => router.currentRoute, () => {
+    localToken.value = token
+})
 
 const getChedule = async () => {
     const token = localStorage.getItem("access");
-    
     const url = store.state.URL + 'api/v1/schedule/'
     const bearer = `Bearer ${token}`
     console.log(bearer)
     fetch(url, {
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localToken}`,
         },
     })
         .then((response) => response.json())
