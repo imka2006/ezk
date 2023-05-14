@@ -97,9 +97,10 @@ const getChedule = async () => {
             days.forEach(day => {
                 mvp.value.push(data[day]);
             });
+            console.log(data)
         })
         .catch((error) => {
-            console.error(error);
+            throw new Error(error.message)
         });
 }
 
