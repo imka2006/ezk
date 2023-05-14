@@ -23,24 +23,28 @@
 
 <script setup>
 import { ref } from "vue"
+import icon1 from '../assets/icons/sidebar/icon-1.svg'
+import icon2 from '../assets/icons/sidebar/icon-2.svg'
+import icon3 from '../assets/icons/sidebar/icon-3.svg'
 
 const listCount = ref(0)
 const list = [
     {
         id: 0,
-        img: "/src/assets/icons/sidebar/icon-1.svg",
+        img: icon1,
         text: "Расписание",
+        img: icon1,
         link: "/schedule",
     },
     {
         id: 1,
-        img: "/src/assets/icons/sidebar/icon-2.svg",
+        img: icon2,
         text: "УМК",
         link: "/",
     },
     {
         id: 2,
-        img: "/src/assets/icons/sidebar/icon-3.svg",
+        img: icon3,
         text: "Регистрация на дисплины",
         link: "/",
     }
