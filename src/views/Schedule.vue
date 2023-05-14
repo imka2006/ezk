@@ -85,7 +85,7 @@ const mvp = ref([])
 
 const getChedule = async () => {
     const token = localStorage.getItem("access");
-
+    console.log(token, 'token')
     fetch(store.state.URL + 'api/v1/schedule/', {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -94,15 +94,12 @@ const getChedule = async () => {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
             const days = Object.keys(data);
             days.forEach(day => {
                 mvp.value.push(data[day]);
             });
-            console.log(data)
         })
         .catch((error) => {
-            console.log(mvp.value);
             throw new Error(error.message)
         });
 }
