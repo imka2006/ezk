@@ -11,6 +11,7 @@ const store = useStore();
 const route = useRouter()
 import SignUp from './components/modal/SignUp.vue';
 import SignIn from './components/modal/SignIn.vue';
+import Loading from './components/loading/Loading.vue';
 
 onMounted(() => {
   // console.log(store.state.signupModel, store.state.signinModel, store.state.burger);
@@ -29,6 +30,7 @@ onMounted(() => {
 <template>
   <Header />
     <Burgerinfo v-show="store.state.burger" />
+    <Loading />
         <SignUp />
         <SignIn />
   <!-- <component :is="layout"> -->

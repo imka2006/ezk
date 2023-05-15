@@ -10,10 +10,18 @@ export default createStore({
         success: false,
         local: localStorage.getItem('access'),
         burger:false,
-        account:localStorage.getItem('access'),
+        account: localStorage.getItem('access'),
+        isLoading: false
     },
     getters: {},
     mutations: {
+        logOut(state) {
+            state.isLoading = true
+            state.account = ""
+            localStorage.clear()
+            state.isLoading = false
+            state.burger = false
+        }
         // async getData(store, item) {
         //     // const data = await fetch(store.URL + "api/v1/auth/", {
         //     //     method: "POST",
@@ -45,7 +53,8 @@ export default createStore({
     },
     actions: {
         async getPost(context, item) {
-            const state = context.state;
+            const state = context.state; 
+            state.isLoading = true
             try {
                 const response = await fetch(state.URL + "api/v1/auth/", {
                     method: "POST",
@@ -62,11 +71,13 @@ export default createStore({
                 if (data.access) {
                     state.success = true;
                     localStorage.setItem("access", data.access);
+                    state.account = localStorage.getItem('access')
                 }
             } catch (error) {
                 console.log("Произошла ошибка:", error);
                 // Обработка ошибки при выполнении запроса
-            }
+            } 
+            state.isLoading = false
         },
 
         // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e…I6Mn0.6RtrTfPXQ-P6lkNrMiBrTMFsgVM0lrtSkLkVs-GjOM8'

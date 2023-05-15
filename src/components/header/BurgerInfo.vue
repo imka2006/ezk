@@ -1,14 +1,14 @@
 <template>
   <div :class="store.state.burger ? 'burger-wrapper active' : 'burger-wrapper'">
     <div  class="burger-list">
-      <router-link v-show="local" @click="store.state.burger = !store.state.burger" v-for="item in list" :key="item.id" :to="item.link" class="burger-link">
+      <router-link v-show="store.state.account" @click="store.state.burger = !store.state.burger" v-for="item in list" :key="item.id" :to="item.link" class="burger-link">
         <p class="burger-text">{{ item.text }}</p>
         <img :src="item.img" alt="img" class="burger-img">
       </router-link>
 
-      <div v-if="local" class="burger-wrapperr">
+      <div v-if="store.state.account" class="burger-wrapperr">
       <img :src="Ava" alt="ava">
-      <button class="burger-signin" @click="deleteLocal()">Выйти</button>
+      <button class="burger-signin" @click="deleteLocal">Выйти</button>
     </div>
     <div v-else class="burger-btns">
       <button @click="store.state.signupModel = !store.state.signupModel" class="burger-signin">Войти</button>
@@ -27,7 +27,9 @@ import { useStore } from "vuex";
 import img1 from '../../assets/icons/burger/img1.svg';
 import img2 from '../../assets/icons/burger/img2.svg';
 import img3 from '../../assets/icons/burger/img3.svg';
+import { useRouter } from "vue-router";
 const store = useStore()
+const router = useRouter()
 const list = ref([
   {
     id: 0,
@@ -50,11 +52,9 @@ const list = ref([
 ])
 const local = ref(localStorage.getItem('access'));
 
-
-
 const deleteLocal = () => {
-  localStorage.clear()
-  $router.push('/')
+  store.commit("logOut")
+  router.push('/')
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <header :class="store.state.burger ? 'header active' : 'header'">
-        <div class="container">
+        <div class="container"> 
             <div class="header-content">
                 <div class="header-info">
                     <router-link to="/">
