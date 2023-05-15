@@ -19,8 +19,8 @@ export default createStore({
             state.isLoading = true
             state.account = ""
             localStorage.clear()
-            state.isLoading = false
-            state.burger = false
+            state.isLoading = false;
+            state.burger = false;
         }
         // async getData(store, item) {
         //     // const data = await fetch(store.URL + "api/v1/auth/", {
