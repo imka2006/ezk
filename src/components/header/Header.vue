@@ -62,7 +62,7 @@ if (local.value) {
 }
 
 const deleteLocal = () => {
-    localStorage.clear()
+    store.commit("logOut")
     router.push('/')
 }
 
