@@ -50,8 +50,7 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router';
 const store = useStore()
 const local = ref(localStorage.getItem('access'))
-const router = useRouter()
-console.log(local);
+const router = useRouter() 
 
 const deleteLocal = () => {
     localStorage.clear()
