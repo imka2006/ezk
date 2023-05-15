@@ -8,6 +8,8 @@ export default createStore({
         data: null,
         schedule: [],
         success: false,
+        local: localStorage.getItem('access'),
+        burger:false,
     },
     getters: {},
     mutations: {

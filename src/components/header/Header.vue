@@ -1,11 +1,11 @@
 <template>
-    <header class="header">
+    <header :class="store.state.burger ? 'header active' : 'header'">
         <div class="container">
             <div class="header-content">
                 <div class="header-info">
                     <router-link to="/">
                         <Logo class="header-logo" />
-                        <LogoAnother class="header-logo_another" />
+                        <img src="../../assets/icons/modal/Logo.svg" class="header-logo_another" alt="logo">
                     </router-link>
                     <div class="header-languages">
                         <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,16 +20,21 @@
                         <p>Russian</p>
                     </div>
                 </div>
-                <div class="header-btns">
+                <div v-if="local" class="header-wrapper">
+                    <img :src="Ava" alt="ava">
+                    <button class="header-signin" @click="deleteLocal()">Выйти</button>
+                </div>
+                <div v-else class="header-btns">
                     <button @click="store.state.signupModel = !store.state.signupModel" class="header-signin">Войти</button>
-                    <button @click="store.state.signipModel = !store.state.signipModel"
+                    <button @click="store.state.signipModel = !store.state.signinModel"
                         class="header-signup">Регистрация</button>
                 </div>
-                <Burger />
+                <div class="header-flex">
+                    <img v-show="local" :src="Ava" alt="ava">
+                    <Burger />
+                </div>
             </div>
         </div>
-        <SignUp />
-        <SignIn />
     </header>
 </template>
 
@@ -37,12 +42,20 @@
 import { ref } from 'vue';
 import Logo from '../../assets/icons/global/Logo.vue';
 import LogoAnother from '../../assets/icons/global/LogoAnother.vue';
-import SignUp from '../../components/modal/SignUp.vue';
-import SignIn from '../../components/modal/SignIn.vue';
 import Burger from './Burger.vue'
+import Ava from '../../assets/icons/sidebar/ava.svg'
 import { useStore } from 'vuex'
-const isActive = ref(false)
+import { useRouter } from 'vue-router';
 const store = useStore()
+const local = ref(localStorage.getItem('access'))
+const router = useRouter()
+console.log(local);
+
+const deleteLocal = () => {
+    localStorage.clear()
+}
+
+
 
 </script>
 
@@ -51,6 +64,18 @@ const store = useStore()
     font-family: "Jost";
     padding: 21px 0 17px;
     background: #ffffff;
+
+    &.active {
+        background: #FFFFFF;
+        padding: 22px 0 34px;
+        height: 15%;
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        z-index: 3;
+        width: 100%;
+        filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
+    }
 
     &-block {
         display: flex;
@@ -97,6 +122,16 @@ const store = useStore()
         color: #1EA9B9;
     }
 
+    &-flex {
+        display: none;
+    }
+
+    &-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
     &-info {
         display: flex;
         align-items: center;
@@ -123,6 +158,10 @@ const store = useStore()
             display: none;
         }
 
+        &-wrapper {
+            display: none;
+        }
+
         &-languages {
             display: none;
         }
@@ -132,15 +171,16 @@ const store = useStore()
 
         }
 
+        &-flex {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            height: 43px;
+        }
+
         &-logo_another {
             display: unset;
         }
     }
 }
-
-
-@media screen and (max-width: 550px) {
-    .header-logo {
-        width: 150px;
-    }
-}</style>
+</style>

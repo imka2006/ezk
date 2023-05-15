@@ -3,13 +3,14 @@
         <div @click="store.state.signupModel = !store.state.signupModel" class="sign-wrapper"></div>
         <div class="signup sign">
             <Close class="sign-close" @click="store.state.signupModel = !store.state.signupModel" />
+            <div class="signup-head">
+                <img src="../../assets/icons/modal/Logo.svg" alt="logo">
+                <img src="../../assets/icons/modal/Close.svg" @click="store.state.signupModel = !store.state.signupModel"
+                    style="cursor:pointer;" alt="logo">
+            </div>
             <div class="signup-content">
                 <form @submit.prevent="login({ userName, password })" class="signup-info">
-                    <div class="signup-head">
-                        <img src="../../assets/icons/modal/Logo.svg" alt="logo">
-                        <img src="../../assets/icons/modal/Close.svg"
-                            @click="store.state.signupModel = !store.state.signupModel" alt="logo">
-                    </div>
+
                     <h2 class="signup-title">Авторизация</h2>
                     <div class="signup-wrapper">
                         <label class="signup-label">
@@ -110,7 +111,7 @@ const login = async (item) => {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    z-index: 4;
     padding: 90px 125px 92px 200px;
 
     &-forgot {
@@ -217,9 +218,11 @@ const login = async (item) => {
         filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
         background: white;
         top: 0;
-        width: 92%;
+        width: 100%;
         left: 0;
-        padding: 24px 20px 19px;
+        padding: 24px 20px 32px;
+        height: 15%;
+        box-sizing: border-box;
     }
 }
 
@@ -233,7 +236,7 @@ const login = async (item) => {
     }
 }
 
-@media screen and (max-width:695px) {
+@media screen and (max-width:781px) {
     .signup {
         width: 100%;
         height: 100%;
@@ -242,11 +245,7 @@ const login = async (item) => {
         align-items: center;
         padding: 0;
         border-radius: unset;
-    }
-}
 
-@media screen and (max-width:500px) {
-    .signup {
         overflow: auto;
         padding: 31px 0 56px;
 
@@ -264,5 +263,12 @@ const login = async (item) => {
             display: flex;
         }
     }
+    .sign-wrapper {
+        display: none;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .signup {}
 }
 </style>

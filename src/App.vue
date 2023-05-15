@@ -2,9 +2,24 @@
 import Footer from "./components/Footer.vue";
 import Header from "./components/header/Header.vue"
 import { RouterView, useRouter } from 'vue-router'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import Sidebar from './layout/Sidebar.vue'
+import { useStore } from "vuex";
+import Burgerinfo from './components/header/BurgerInfo.vue';
+
+const store = useStore();
 const route = useRouter()
+import SignUp from './components/modal/SignUp.vue';
+import SignIn from './components/modal/SignIn.vue';
+
+onMounted(() => {
+  // console.log(store.state.signupModel, store.state.signinModel, store.state.burger);
+  // if (!store.state.signupModel) {
+  //   document.querySelector("body").style.overflow = "hidden"
+  // } else {
+  //   document.querySelector("body").style.overflow = "unset"
+  // }
+ })
 
 // const layout = computed(() => {
 //   console.log(route.meta);
@@ -13,6 +28,9 @@ const route = useRouter()
 
 <template>
   <Header />
+    <Burgerinfo v-show="store.state.burger" />
+        <SignUp />
+        <SignIn />
   <!-- <component :is="layout"> -->
     <router-view />
   <!-- </component> -->

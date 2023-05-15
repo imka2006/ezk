@@ -1,12 +1,17 @@
 <template>
     <BigAdvertising />
+    <div class="schedule-tabs container">
+        <span :class="tab === i ? 'schedule-tab schedule-tabs_calendar active' : 'schedule-tab schedule-tabs_calendar '"
+            v-for="(item, i) in tabs" :key="i" @click="tab = i; tabValue = item">{{ item }}</span>
+    </div>
     <div class="wrapper container">
-        <Sidebar />
-        <section class="schedule">
+        <Sidebar class="schedule-sidebar" />
+        <section v-if="tabValue === 'Расписание'" class="schedule">
             <div class="schedule-content">
                 <h2 class="schedule-title">Расписание на неделю</h2>
                 <span class="schedule-text">СПО - 1- 20</span>
-                <div class="schedule-wrapper">
+                <div class="schedule-wrapper" ref="myDiv" @mousedown="handleMouseDown" @mousemove="handleMouseMove"
+                    @mouseup="handleMouseUp">
                     <table>
                         <thead>
                             <tr v-for="day in days" :key="day">
@@ -42,7 +47,8 @@
                 </div>
             </div>
         </section>
-        <Calendar />
+        <Calendar v-if="tabValue === 'Календарь'" />
+        <Calendar class="schedule-calendar" />
     </div>
 </template>
 
@@ -53,6 +59,9 @@ import Calendar from '../layout/Calendar.vue';
 import { onMounted, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
+const tab = ref(0)
+const tabValue = ref('Расписание')
+const tabs = ref(['Расписание', 'Календарь'])
 const times = ref([
     {
         id: 0,
@@ -84,7 +93,7 @@ const days = ref(["неделя", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"
 const store = useStore();
 const mvp = ref([])
 const router = useRouter()
- 
+
 
 const token = localStorage.getItem("access");
 
@@ -115,6 +124,37 @@ const getChedule = async () => {
         });
 }
 
+
+const myDiv = ref(null);
+const isMouseDown = ref(false);
+const startX = ref(0);
+const startY = ref(0);
+
+const handleMouseDown = (event) => {
+    if (event.button === 0) { // Левая кнопка мыши
+        isMouseDown.value = true;
+        startX.value = event.clientX + myDiv.value.scrollLeft;
+        startY.value = event.clientY + myDiv.value.scrollTop;
+    }
+};
+
+const handleMouseMove = (event) => {
+    if (isMouseDown.value) {
+        const deltaX = startX.value - (event.clientX + myDiv.value.scrollLeft);
+        const deltaY = startY.value - (event.clientY + myDiv.value.scrollTop);
+        myDiv.value.scrollLeft += deltaX;
+        myDiv.value.scrollTop += deltaY;
+        startX.value = event.clientX + myDiv.value.scrollLeft;
+        startY.value = event.clientY + myDiv.value.scrollTop;
+    }
+};
+
+const handleMouseUp = (event) => {
+    if (event.button === 0) { // Левая кнопка мыши
+        isMouseDown.value = false;
+    }
+};
+
 onMounted(async () => {
     await getChedule()
 });
@@ -144,33 +184,46 @@ onMounted(async () => {
 
     &-wrapper {
         overflow: auto;
-        width: 500px;
+        scrollbar-width: none;
+        /* Убираем полосу прокрутки для браузеров, поддерживающих новые стандарты */
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            /* Убираем полосу прокрутки для браузеров на основе WebKit (Chrome, Safari, Opera) */
+        }
     }
 
     table {
         margin-top: 60px;
-        background-image: linear-gradient(0deg, transparent 99%, #dcdcdc 10%);
+        background-image: linear-gradient(0deg, transparent 98%, #dcdcdc 10%);
         background-size: 10px 32px;
         background-color: #ffffff;
 
         thead {
-            padding: 8.41px 17.52px 7.71px 32px;
+            padding: 8.41px 17.52px 7.71px 0;
             background: #ffffff;
             display: flex;
             align-items: center;
-            // gap: 102px;
             margin-bottom: 10px;
             align-items: center;
 
             tr {
 
+                td {
+                    font-weight: 400;
+                    font-size: 11.2135px;
+                    line-height: 11px;
+                    color: #B1B1B1;
+                }
+
                 // margin-left: ;
                 &:not(:first-child) {
-                    margin-left: 100px;
+                    margin-left: 107px;
                 }
 
                 &:nth-child(2) {
-                    margin-left: 80px;
+                    margin-left: 108px;
                 }
             }
         }
@@ -178,32 +231,53 @@ onMounted(async () => {
         tbody {
             display: flex;
             gap: 30px;
-            align-items: baseline;
+            align-items: self-start;
 
             tr {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                gap: 4px;
+                gap: 3px;
 
                 &:first-child {
                     display: flex;
                     flex-direction: column;
-                    gap: 5px;
+                    gap: 17px;
                     margin-right: 20px;
+                    background: #fff;
+
+                    td {
+                        &:first-child {
+                            margin-top: 23px;
+                        }
+
+                        &:last-child {
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+
+                td {
+                    &:first-child {
+                        margin-top: 21px;
+                    }
                 }
 
                 .schedule-another {
                     width: 50px;
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
-                    padding: 9.41px 17.52px 2.71px 32px;
-                    gap: 10px;
+                    align-items: flex-start;
+                    padding: 8.41px 17.52px 2.71px 0;
+                    gap: 17px;
                     background: #ffffff;
 
                     span {
                         text-align: center;
+                        font-weight: 400;
+                        font-size: 11.2135px;
+                        line-height: 11px;
+                        color: #B1B1B1;
                     }
                 }
 
@@ -239,6 +313,71 @@ onMounted(async () => {
         border-left: 3.65px solid #1EA9B9;
         padding: 5.67px 5px 3.78px 10px;
         box-sizing: border-box;
+    }
+
+    &-tabs {
+        display: none;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 20px 23px;
+
+
+        &_calendar {
+            background: #fff;
+            border-radius: 30px;
+            padding:9px 25px ;
+            font-weight: 500;
+            font-size: 10.1922px;
+            line-height: 110%; 
+            color: #9197B3;
+            cursor: pointer;
+
+            &.active {
+                background: #1EA9B9;
+                color: #fff;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1180px) {
+    .schedule {
+        width: 100%;
+
+        &-calendar {
+            display: none;
+        }
+
+    }
+
+    .schedule-tabs {
+        display: flex;
+    }
+
+    .schedule-sidebar {
+        display: none;
+    }
+
+    .wrapper {
+        justify-content: start;
+    }
+}
+
+@media screen and (max-width:950px) {
+    .schedule {
+        width: 100%;
+
+    }
+}
+
+@media screen and (max-width:431px) {
+    .schedule {
+        padding: 0;
+
+        &-span {
+            font-size: 11.2135px;
+            line-height: 11px;
+        }
     }
 }
 </style>

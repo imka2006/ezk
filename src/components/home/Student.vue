@@ -6,10 +6,10 @@
                     <h2 class="student-title">Каждый студент и родитель могут опробовать это на себе.</h2>
                     <p class="student-description">Каждый студент, родитель и преподаватель могут опробовать это на себе и
                         узнать насколько это удобно и важно.</p>
-                    <button class="student-btn">Регистрация</button>
+                    <button @click="$store.state.signipModel = !$store.state.signipModel" class="student-btn">Регистрация</button>
                 </div>
                 <img src="../../assets/image/student/image.png" alt="student-image" class="student-img">
-                <button class="student-another_btn">Регистрация</button>
+                <button @click="$store.state.signipModel = !$store.state.signipModel" class="student-another_btn">Регистрация</button>
             </div>
         </section>
     </div>

@@ -3,11 +3,17 @@
     <div @click="store.state.signipModel = !store.state.signipModel" class="sign-wrapper"></div>
     <div class="signin sign">
       <Close class="sign-close" @click="store.state.signipModel = !store.state.signipModel" />
+      <div class="signup-head">
+        <img src="../../assets/icons/modal/Logo.svg" alt="logo">
+        <img src="../../assets/icons/modal/Close.svg" @click="store.state.signipModel = !store.state.signipModel"
+          style="cursor:pointer;" alt="logo">
+      </div>
       <div class="signin-content">
         <form class="signin-info">
           <div class="signin-head">
             <img src="../../assets/icons/modal/Logo.svg" alt="logo">
-            <img src="../../assets/icons/modal/Close.svg" @click="store.state.signipModel = !store.state.signipModel" alt="logo"> 
+            <img src="../../assets/icons/modal/Close.svg" @click="store.state.signipModel = !store.state.signipModel"
+              alt="logo">
           </div>
           <h2 class="signin-title">Регистрация</h2>
           <div class="signin-wrapper">
@@ -108,7 +114,7 @@
                 </svg>
 
               </label>
-            </div> 
+            </div>
           </div>
           <span class="signin-forgot">Забыли пароль?</span>
           <button class="signin-btn">Зарегестрироваться</button>
@@ -122,7 +128,7 @@
 
 <script setup>
 import Close from '../../assets/icons/modal/Close.vue';
-import imageSignin from "../../assets/image/model/imageSignin.png" 
+import imageSignin from "../../assets/image/model/imageSignin.png"
 import { ref } from "vue"
 import { useStore } from 'vuex';
 const isActive = ref(false)
@@ -135,7 +141,7 @@ const URL = "http://192.168.0.191:9999/"
    left: 50%;
    top: 50%;
    transform: translate(-50%, -50%);
-   z-index: 1;
+   z-index: 4;
    padding: 46px 127px 78px 93px;
    max-width: 100%;
 
@@ -239,52 +245,91 @@ const URL = "http://192.168.0.191:9999/"
        cursor: pointer;
      }
    }
+
    &-head {
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
-    background: white;
-    top: 0;
-    width: 90%;
-    left: 0;
-    padding: 24px 20px 19px;
+     display: none;
+     justify-content: space-between;
+     align-items: center;
+     position: absolute;
+     filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
+     background: white;
+     top: 0;
+     width: 100%;
+     left: 0;
+     padding: 24px 20px 32px;
+     height: 15%;
+     box-sizing: border-box;
    }
  }
+
  @media screen and (max-width:1040px) {
-  .signin {
-    &-img {
-      display: none;
-    }
-  }
+   .signin {
+     &-img {
+       display: none;
+     }
+   }
  }
+
+ @media screen and (max-width:781px) {
+   .signin {
+     width: 100%;
+     height: 100%;
+     justify-content: center;
+     display: flex;
+     align-items: center;
+     padding: 0;
+     border-radius: unset;
+
+     overflow: auto;
+     padding: 31px 0 56px;
+
+     
+
+     &-title {
+       margin-top: 80px;
+       margin-bottom: 20px;
+     }
+
+     &-head {
+       display: flex;
+     }
+   }
+ }
+
  @media screen and (max-width:695px) {
-  .signin {
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    border-radius: unset;
-  }
+   .signin {
+     width: 100%;
+     height: 100%;
+     justify-content: center;
+     display: flex;
+     align-items: center;
+     padding: 0;
+     border-radius: unset;
+
+   }
+
+   .sign-wrapper {
+    display: none;
+   }
  }
+
  @media screen and (max-width:500px) {
-  .signin {
-    overflow: auto;
-    padding: 31px 0 56px;
-    &-items {
-      flex-direction:column;
-      gap: 0px;
-    }
-    &-title {
-      margin-top: 300px;
-      margin-bottom: 20px;
-    }
-    &-head {
-      display: flex; 
-    }
-  }
- }
- </style>
+   .signin {
+     overflow: auto;
+     padding: 31px 0 56px;
+
+     &-items {
+       flex-direction: column;
+       gap: 0px;
+     }
+
+     &-title {
+       margin-top: 300px;
+       margin-bottom: 20px;
+     }
+
+     &-head {
+       display: flex;
+     }
+   }
+ }</style>

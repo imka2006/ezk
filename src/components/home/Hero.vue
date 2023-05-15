@@ -1,4 +1,4 @@
-<template>
+<template> 
     <section class="hero" :style="style">
         <div class="container">
             <div class="hero-content">
@@ -7,14 +7,14 @@
                     <p class="hero-description"> Приложение ЕДИНАЯ ЦИФРОВАЯ ЗАЧЕТНАЯ КНИЖКА это доступ в режиме онлайн к
                         любой учебной информации, предоставленный преподавателям, родителям и студентам.</p>
                     <div class="hero-btns">
-                        <button class="hero-signin">Войти</button>
-                        <button class="hero-signup">Регистрация</button>
+                        <button class="hero-signin" @click="store.state.signupModel = !store.state.signupModel">Войти</button>
+                        <button class="hero-signup" @click="store.state.signipModel = !store.state.signipModel">Регистрация</button>
                     </div>
                 </div>
                 <img class="hero-img" src="../../assets/image/hero/image.png" alt="hero-img" />
                 <div class="hero-another_btns">
                     <button class="hero-signin" @click="store.state.signupModel = !store.state.signupModel">Войти</button>
-                    <button class="hero-signup" @click="store.state.signinModel = !store.state.signinModel">Регистрация</button>
+                    <button class="hero-signup" @click="store.state.signipModel = !store.state.signipModel">Регистрация</button>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
 <script setup> 
 import { useStore } from "vuex" 
 defineProps("style")    
-const store = useStore()
+const store = useStore() 
 
 </script>
 

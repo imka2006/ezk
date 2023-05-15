@@ -1,6 +1,8 @@
 <template>
-    <div class="advertising container">
-        Реклама
+    <div class="container">
+        <div class="advertising">
+            Реклама
+        </div>
     </div>
 </template>
 
