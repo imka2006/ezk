@@ -40,7 +40,8 @@ const store = useStore();
     box-sizing: border-box;
     cursor: pointer;
 
-    &.active {
+    &.active .header-logo{
+    background: none;
       display: unset;
       height: unset;
       width: unset;

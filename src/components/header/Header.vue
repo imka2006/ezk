@@ -4,8 +4,10 @@
             <div class="header-content">
                 <div class="header-info">
                     <router-link to="/">
-                        <Logo class="header-logo" />
-                        <img src="../../assets/icons/modal/Logo.svg" class="header-logo_another" alt="logo">
+                        <Logo class="header-logo" /> 
+                        <img :src="logoAnother" class="header-logo_another" alt="logo">
+                        <Logo   v-if="store.state.burger" /> 
+                        <img :src="logoAnother" v-else alt="logo">
                     </router-link>
                     <div class="header-languages">
                         <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +43,7 @@
 <script setup>
 import { ref } from 'vue';
 import Logo from '../../assets/icons/global/Logo.vue';
-import LogoAnother from '../../assets/icons/global/LogoAnother.vue';
+import logoAnother from '../../assets/icons/global/logoAnother.png';
 import Burger from './Burger.vue'
 import Ava from '../../assets/icons/sidebar/ava.svg'
 import { useStore } from 'vuex'
@@ -74,7 +76,7 @@ const deleteLocal = () => {
         top: 0;
         z-index: 3;
         width: 100%;
-        filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
+        filter: drop-shado  w(0px 4px 20px rgba(0, 0, 0, 0.25));
     }
 
     &-block {
@@ -134,8 +136,7 @@ const deleteLocal = () => {
 
     &-info {
         display: flex;
-        align-items: center;
-        gap: 98px;
+        align-items: center; 
     }
 
     &-btns {
@@ -179,7 +180,7 @@ const deleteLocal = () => {
         }
 
         &-logo_another {
-            display: unset;
+            display: none;
         }
     }
 }
