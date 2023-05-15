@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-description">2022 - 2023. Единая зачетная книжка</p>
+        <p class="footer-description">2022 - 2023. Электронная зачетная книжка</p>
         <ul class="footer-cocial-list">
           <li class="footer-cocial-item"><a href="mailto:centertehnologies@gmail.com" target="_blank"><img src="	https://arthursabr.pythonanywhere.com/static/img/email.svg" alt="gmail"></a></li>
           <li class="footer-cocial-item"><a href="https://go.2gis.com/l5ven" target="_blank"><img style="width: 25px; height: 25px;" src="https://arthursabr.pythonanywhere.com/static/img/location.png" alt="2gis"></a></li>
@@ -121,10 +121,5 @@ import FooterIcon from '../assets/icons/footer/FooterIcon.vue';
       text-align: center;
     }
   }
-}
-@media screen and (max-width:533px) {
-  .footer { 
-      
-  }
-}
+} 
 </style>
