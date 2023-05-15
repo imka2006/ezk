@@ -47,7 +47,7 @@
                         </label>
                     </div>
                     <span class="signup-forgot">Забыли пароль?</span>
-                    <button class="signup-btn">Войти</button>
+                    <button class="signup-btn" @click="store.state.signupModel = !store.state.signupModel, store.state.burger = false">Войти</button>
                     <p class="signup-description">У вас нет аккаунта? <span>Регестрация</span></p>
                 </form>
                 <img :src="imageSignup" class="signup-img" alt="imageSignup">

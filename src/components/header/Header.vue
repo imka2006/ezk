@@ -22,7 +22,7 @@
                         <p>Russian</p>
                     </div>
                 </div>
-                <div v-if="local" class="header-wrapper">
+                <div v-if="store.state.account" class="header-wrapper">
                     <img :src="Ava" alt="ava">
                     <button class="header-signin" @click="deleteLocal()">Выйти</button>
                 </div>
@@ -32,7 +32,7 @@
                         class="header-signup">Регистрация</button>
                 </div>
                 <div class="header-flex">
-                    <img v-show="local" :src="Ava" alt="ava">
+                    <img v-show="store.state.account" :src="Ava" alt="ava">
                     <Burger />
                 </div>
             </div>
@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+// import { ref } from 'vue';
 import Logo from '../../assets/icons/global/Logo.vue';
 import logoAnother from '../../assets/icons/global/logoAnother.png';
 import Burger from './Burger.vue'
@@ -50,12 +50,36 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router';
 const store = useStore()
 const local = ref(localStorage.getItem('access'))
+const isActive = ref(false)
 const router = useRouter() 
+
+if (local.value) {
+    console.log(local.value, isActive.value);
+    isActive.value = true
+} else {
+    isActive.value = false
+    console.log(local.value, isActive.value);
+}
 
 const deleteLocal = () => {
     localStorage.clear()
+    router.push('/')
 }
 
+import { ref, watch } from 'vue';
+
+const myData = ref(''); // Ваша реактивная переменная
+
+// Чтение данных из localStorage и установка их в реактивную переменную
+const storedData = localStorage.getItem('access');
+if (storedData) {
+  myData.value = storedData;
+}
+
+// Отслеживание изменений реактивной переменной и сохранение данных в localStorage
+watch(myData, (newValue) => {
+  localStorage.setItem('myData', newValue);
+});
 
 
 </script>

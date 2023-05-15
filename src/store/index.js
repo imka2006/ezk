@@ -10,6 +10,7 @@ export default createStore({
         success: false,
         local: localStorage.getItem('access'),
         burger:false,
+        account:localStorage.getItem('access'),
     },
     getters: {},
     mutations: {
