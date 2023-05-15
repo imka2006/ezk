@@ -1,14 +1,14 @@
 <template>
-    <section class="safety">
+    <section id="safety" class="safety">
         <div class="container">
             <div class="safety-content">
                 <div class="safety-info">
                     <h1 class="safety-title"><span>Безопасность</span> Время обезопасить себя и свои данные </h1>
                     <p class="safety-description">On the other hand ,we denounce with righteous indignation and dislike men
                         who are so beguiled and demoralized.</p>
-                    <PurpleBtn class="safety-btn" text="Подробнее" style="padding:17px 39px;" />
+                    <PurpleBtn class="safety-btn" text="Подробнее" style="padding:17px 39px;" link="/" />
                 </div>
-                <img class="safety-img" src="../../assets/image/safety/image.png" alt="safety-img" />
+                <img class="safety-img" src="../../assets/image/safety/image.png"  alt="safety-img" />
             </div>
         </div>
     </section>

@@ -1,5 +1,5 @@
 <template>
-    <section class="view">
+    <section id="view" class="view">
         <div class="container">
             <div class="view-content">
                 <img src="../../assets/image/view/image.png" class="view-img" alt="view-img">

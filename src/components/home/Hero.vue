@@ -6,13 +6,13 @@
                     <h1 class="hero-title">Добро пожаловать в ЕЗК!</h1>
                     <p class="hero-description"> Приложение ЕДИНАЯ ЦИФРОВАЯ ЗАЧЕТНАЯ КНИЖКА это доступ в режиме онлайн к
                         любой учебной информации, предоставленный преподавателям, родителям и студентам.</p>
-                    <div class="hero-btns">
+                    <div v-show="!store.state.account" class="hero-btns">
                         <button class="hero-signin" @click="store.state.signupModel = !store.state.signupModel">Войти</button>
                         <button class="hero-signup" @click="store.state.signipModel = !store.state.signipModel">Регистрация</button>
                     </div>
                 </div>
                 <img class="hero-img" src="../../assets/image/hero/image.png" alt="hero-img" />
-                <div class="hero-another_btns">
+                <div v-show="!store.state.account" class="hero-another_btns">
                     <button class="hero-signin" @click="store.state.signupModel = !store.state.signupModel">Войти</button>
                     <button class="hero-signup" @click="store.state.signipModel = !store.state.signipModel">Регистрация</button>
                 </div>

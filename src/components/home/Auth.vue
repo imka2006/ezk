@@ -4,13 +4,13 @@
             <div class="auth-content">
                 <div class="auth-wrapper">
                     <img class="auth-img" src="../../assets/image/auth/image.png" alt="auth-img" />
-                    <PurpleBtn class="auth-btn_another" text="Подать заявку" style="padding: 17px 27px;" />
+                    <PurpleBtnLink class="auth-btn_another" text="Подать заявку" style="padding: 17px 27px;" link="https://sino0on.pythonanywhere.com/send_application" />
                 </div>
                 <div class="auth-info">
                     <h1 class="auth-title">Более <span>800 000+</span> Студентов</h1>
                     <p class="auth-description"> В единой зачетной книжки зарегистрировано более +800.000 студентов по всему
                         КР</p>
-                    <PurpleBtn class="auth-btn" text="Подать заявку" style="padding: 17px 27px;" />
+                    <PurpleBtnLink class="auth-btn" text="Подать заявку" style="padding: 17px 27px;" link="https://sino0on.pythonanywhere.com/send_application"  />
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import PurpleBtn from "../../components/btns/PurpleBtn.vue"
+import PurpleBtnLink from "../../components/btns/PurpleBtnLink.vue"
 </script>
 
 <style lang="scss">

@@ -1,7 +1,6 @@
 <template>
     <div class="container">
-        <div class="advertising">
-            Реклама
+        <div class="advertising"> 
         </div>
     </div>
 </template>
@@ -13,11 +12,12 @@
 <style>
 .advertising {
     width: 100%;
-    padding: 33px 0;
-    background: #6FBBF2;
+    height: 200px; 
+    background: url("https://blog.smm.school/wp-content/uploads/2022/08/banner_5.png") center no-repeat;
+    background-size: 50%;
     border-radius: 30px;
     font-weight: 800;
-    font-size: 40.1387px;
+    font-size: 40px;
     color: #FFFFFF;
     display: flex;
     align-items: center;

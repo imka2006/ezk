@@ -4,42 +4,35 @@
       <div class="footer-content">
         <img src="../assets/icons/footer/logo.svg" alt="logo">
         <div class="footer-wrapper">
-          <h4 class="footer-title">Platform</h4>
-          <ul class="footer-list">
-            <li class="footer-item"><a href="#">Overview</a></li>
-            <li class="footer-item"><a href="#">Features</a></li>
-            <li class="footer-item"><a href="#">About</a></li>
-            <li class="footer-item"><a href="#">Pricing</a></li>
+          <h4 class="footer-title">Платформа</h4>
+          <ul class="footer-list"> 
+            <li class="footer-item"><a href="#view">Как мы это видим?</a></li>
+            <li class="footer-item"><a href="#safety">Безопасность</a></li>
+            <li class="footer-item"><a href="#smartphone">О приложение</a></li> 
           </ul>
         </div>
         <div class="footer-wrapper">
-          <h4 class="footer-title">Help</h4>
+          <h4 class="footer-title">о нас</h4>
           <ul class="footer-list">
-            <li class="footer-item"><a href="#">How does it work?</a></li>
-            <li class="footer-item"><a href="#">Where to ask questions?</a></li>
-            <li class="footer-item"><a href="#">How to pay?</a></li>
-            <li class="footer-item"><a href="#">What is needed for this?</a></li>
+            <li class="footer-item"><a href="https://sino0on.pythonanywhere.com/" target="_blank">Подробнее о нас</a></li>
+            <li class="footer-item"><a href="https://sino0on.pythonanywhere.com/send_application" target="_blank">Подать заявку</a></li> 
           </ul>
         </div>
         <div class="footer-wrapper">
-          <h4 class="footer-title">Contacts</h4>
+          <h4 class="footer-title">Контакты</h4>
           <ul class="footer-list">
-            <li class="footer-item"><a href="tel:9967165323577">(716) 532-3577</a></li>
-            <li class="footer-item">116 Archer Rd <br> Broadalbin, New York(NY), 12025</li>
+            <li class="footer-item"><a href="tel:+996556309075">(556) 309-075</a></li>
+            <li class="footer-item">Г. Бишкек Московская 165</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <p class="footer-description">2022 - 2023. Единая зачетная книжка</p>
         <ul class="footer-cocial-list">
-          <li class="footer-cocial-item"><a href="#" target="_blank"><img src="../assets/icons/footer/facebook.svg"
-                alt="cocial-icon"></a></li>
-          <li class="footer-cocial-item"><a href="#" target="_blank"><img src="../assets/icons/footer/twiter.svg"
-                alt="cocial-icon"></a></li>
-          <li class="footer-cocial-item"><a href="#" target="_blank"><img src="../assets/icons/footer/instagram.svg"
-                alt="cocial-icon"></a></li>
-          <li class="footer-cocial-item"><a href="#" target="_blank"><img src="../assets/icons/footer/in.svg"
-                alt="cocial-icon"></a></li>
+          <li class="footer-cocial-item"><a href="mailto:centertehnologies@gmail.com" target="_blank"><img src="	https://arthursabr.pythonanywhere.com/static/img/email.svg" alt="gmail"></a></li>
+          <li class="footer-cocial-item"><a href="https://go.2gis.com/l5ven" target="_blank"><img style="width: 25px; height: 25px;" src="https://arthursabr.pythonanywhere.com/static/img/location.png" alt="2gis"></a></li>
+          <li class="footer-cocial-item"><a href="https://instagram.com/centertehnologies?igshid=NTc4MTIwNjQ2YQ==" target="_blank"><img src="../assets/icons/footer/instagram.svg" alt="instagram"></a></li>
+          <li class="footer-cocial-item"><a href="https://wa.me/996505840888" target="_blank"><img src="https://arthursabr.pythonanywhere.com/static/img/whatsapp.svg" alt="whatsapp"></a></li>
         </ul>
       </div>
     </div>
@@ -95,6 +88,9 @@ import FooterIcon from '../assets/icons/footer/FooterIcon.vue';
     display: flex;
     align-items: center;
     gap: 50px;
+    img {
+      max-width: 39px;
+    }
   }
 }
 @media screen and (max-width:930px) {

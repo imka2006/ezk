@@ -1,5 +1,5 @@
 <template>
-    <section class="smartphone" :style="style">
+    <section id="smartphone" class="smartphone" :style="style">
         <div class="container">
             <div class="smartphone-content">
                 <img class="smartphone-img" src="../../assets/image/smartphone/image.png" alt="smartphone-img" />

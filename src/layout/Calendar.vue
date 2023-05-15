@@ -2,7 +2,7 @@
     <section class="calendar">
         <h2>Календарь</h2>
         <div id="calendar">
-            <div class="header">
+            <div class="headers">
                 <button @click="previousMonth">
                     <Arrow />
                 </button>
@@ -205,13 +205,13 @@ function isSelected(date) {
 }
 
 
-.header {
+.headers {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.header button {
+.headers button {
     font-size: 20px;
     background: none;
     border: none;

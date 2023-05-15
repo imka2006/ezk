@@ -27,8 +27,8 @@
                             </tr>
                             <tr v-for="items in mvp" :key="items">
                                 <td v-for="item in items" :key="item.id">
-                                    <div class="schedule-block">
-                                        <p class="schedule-name">{{ item?.discipline?.urok?.title }}</p>
+                                    <div v-if="item.id" class="schedule-block">
+                                        <p class="schedule-name">{{ item.discipline.urok.title }}</p>
                                         <span class="schedule-time">
                                             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -36,12 +36,12 @@
                                                     d="M5.25714 0.748535C2.81222 0.748535 0.831299 2.72946 0.831299 5.17438C0.831299 7.6193 2.81222 9.60022 5.25714 9.60022C7.70206 9.60022 9.68298 7.6193 9.68298 5.17438C9.68298 2.72946 7.70206 0.748535 5.25714 0.748535ZM9.1119 5.17438C9.1119 7.29271 7.39689 9.02914 5.25714 9.02914C3.1388 9.02914 1.40237 7.31413 1.40237 5.17438C1.40237 3.05604 3.11739 1.31961 5.25714 1.31961C7.37547 1.31961 9.1119 3.03462 9.1119 5.17438ZM6.45461 6.75019L5.00551 5.69727C4.95019 5.65622 4.91806 5.59197 4.91806 5.52416V2.67592C4.91806 2.55813 5.01443 2.46176 5.13222 2.46176H5.38206C5.49985 2.46176 5.59622 2.55813 5.59622 2.67592V5.28681L6.85437 6.20231C6.95074 6.27191 6.97037 6.40576 6.90077 6.50213L6.75443 6.70379C6.68483 6.79837 6.55098 6.81979 6.45461 6.75019Z"
                                                     fill="#1EA9B9" />
                                             </svg>
-                                            {{ item?.time }}
+                                            {{ item.time }}
                                         </span>
                                     </div>
+                                    <div v-else class="schedule-block"></div>
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -94,7 +94,6 @@ const store = useStore();
 const mvp = ref([])
 const router = useRouter()
 
-
 const token = localStorage.getItem("access");
 
 const localToken = ref('');
@@ -116,7 +115,30 @@ const getChedule = async () => {
             days.forEach(day => {
                 mvp.value.push(data[day]);
             });
-            console.log(data)
+
+            mvp.value = mvp.value.map(item => item.sort((a, b) => {
+                if (a.time < b.time) {
+                    return -1;
+                }
+                if (a.time > b.time) {
+                    return 1;
+                }
+                return 0;
+            }))
+
+            mvp.value = mvp.value.map((item) => {
+                const el = []
+                for (let i = 0; i < 5; i++) {
+                    if(item[i]) {
+                        el.push(item[i])
+                    } else {
+                        el.push({})
+                    }
+                }
+                return el
+            })
+
+            console.log(mvp.value);
         })
         .catch((error) => {
             console.error(error);
@@ -325,10 +347,10 @@ onMounted(async () => {
         &_calendar {
             background: #fff;
             border-radius: 30px;
-            padding:9px 25px ;
+            padding: 9px 25px;
             font-weight: 500;
             font-size: 10.1922px;
-            line-height: 110%; 
+            line-height: 110%;
             color: #9197B3;
             cursor: pointer;
 

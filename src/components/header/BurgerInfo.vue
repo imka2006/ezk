@@ -34,13 +34,13 @@ const list = ref([
   {
     id: 0,
     text: 'Личный кабинет',
-    link: '/',
+    link: '/schedule',
     img: img1,
   },
   {
     id: 1,
     text: 'Расписание',
-    link: '/schedule',
+    link: '/',
     img: img2,
   },
   {

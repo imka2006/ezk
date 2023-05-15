@@ -15,12 +15,16 @@ export default createStore({
     },
     getters: {},
     mutations: {
-        logOut(state) {
+        logOut(state) {  
             state.isLoading = true
             state.account = ""
             localStorage.clear()
             state.isLoading = false;
-            state.burger = false;
+            state.burger = false; 
+            state.signinModel = false
+        },
+        setModalActive(state) {
+            state.signinModel = !state.signinModel
         }
         // async getData(store, item) {
         //     // const data = await fetch(store.URL + "api/v1/auth/", {
@@ -78,6 +82,8 @@ export default createStore({
                 // Обработка ошибки при выполнении запроса
             } 
             state.isLoading = false
+            state.signupModel = false
+            state.burger = false
         },
 
         // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e…I6Mn0.6RtrTfPXQ-P6lkNrMiBrTMFsgVM0lrtSkLkVs-GjOM8'

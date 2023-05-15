@@ -29,8 +29,7 @@ onMounted(() => {
 
 <template>
   <Header />
-    <Burgerinfo v-show="store.state.burger" />
-    <Loading />
+    <Burgerinfo v-show="store.state.burger" /> 
         <SignUp />
         <SignIn />
   <!-- <component :is="layout"> -->

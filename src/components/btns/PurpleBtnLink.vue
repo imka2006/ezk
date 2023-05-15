@@ -1,5 +1,5 @@
 <template>
-    <button :style="style" @click="router.push(`${link}`)">{{ text }}</button>
+    <a :href='link' target="_blank" :style="style" >{{ text }}</a>
 </template>
 
 <script setup>
@@ -7,9 +7,10 @@ defineProps(["text", "style", "link"])
 </script>
 
 <style lang="scss" scoped>
-button {
+a {
     background: #8D64DC;
     border-radius: 9.48718px;
+    display: inline-block;
     font-family: 'Jost';
     font-style: normal;
     font-weight: 600;
