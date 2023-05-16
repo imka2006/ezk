@@ -109,8 +109,7 @@ import FooterIcon from '../assets/icons/footer/FooterIcon.vue';
   .footer {
     &-content {
       border-bottom: unset;
-          flex-direction: column;
-    /* justify-content: center; */
+          flex-direction: column; 
     align-items: center;
     text-align: center;
     }
